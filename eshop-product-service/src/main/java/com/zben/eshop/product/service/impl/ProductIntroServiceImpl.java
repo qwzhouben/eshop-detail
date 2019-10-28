@@ -27,19 +27,20 @@ public class ProductIntroServiceImpl implements ProductIntroService {
     @Override
     public void add(ProductIntro productIntro) {
         productIntroMapper.add(productIntro);
-        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"add\", \"data_type\":\"intro\", \"id\":"+productIntro.getId()+"}");
+        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"add\", \"data_type\":\"intro\", \"id\":"+productIntro.getId()+",\"product_id\":"+productIntro.getProductId()+"}");
     }
 
     @Override
     public void update(ProductIntro productIntro) {
         productIntroMapper.update(productIntro);
-        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"update\", \"data_type\":\"intro\", \"id\":"+productIntro.getId()+"}");
+        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"update\", \"data_type\":\"intro\", \"id\":"+productIntro.getId()+",\"product_id\":"+productIntro.getProductId()+"}");
     }
 
     @Override
     public void delete(Long id) {
+        ProductIntro productIntro = findById(id);
         productIntroMapper.delete(id);
-        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"add\", \"data_type\":\"intro\", \"id\":"+id+"}");
+        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"add\", \"data_type\":\"intro\", \"id\":"+id+",\"product_id\":"+productIntro.getProductId()+"}");
     }
 
     @Override
