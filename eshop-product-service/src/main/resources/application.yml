@@ -15,3 +15,11 @@ spring:
     url: jdbc:mysql://localhost:3306/eshop?useUnicode=true&characterEncoding=utf8
     username: root
     password: 123456
+
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 15672
+    username: rabbitadmin
+    password: 123456

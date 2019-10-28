@@ -2,6 +2,8 @@ package com.zben.eshop.product.service.impl;
 
 import com.zben.eshop.product.mapper.ProductSpecificationMapper;
 import com.zben.eshop.product.model.ProductSpecification;
+import com.zben.eshop.product.rabbitmq.RabbitMQSender;
+import com.zben.eshop.product.rabbitmq.RabbitQueue;
 import com.zben.eshop.product.service.ProductSpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,20 +18,25 @@ public class ProductSpecificationServiceImpl implements ProductSpecificationServ
 
     @Autowired
     ProductSpecificationMapper productSpecificationMapper;
+    @Autowired
+    RabbitMQSender rabbitMQSender;
 
     @Override
     public void add(ProductSpecification productSpecification) {
         productSpecificationMapper.add(productSpecification);
+        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"add\", \"data_type\":\"specification\", \"id\":"+productSpecification.getId()+"}");
     }
 
     @Override
     public void update(ProductSpecification productSpecification) {
         productSpecificationMapper.update(productSpecification);
+        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"update\", \"data_type\":\"specification\", \"id\":"+productSpecification.getId()+"}");
     }
 
     @Override
     public void delete(Long id) {
         productSpecificationMapper.delete(id);
+        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"delete\", \"data_type\":\"specification\", \"id\":"+id+"}");
     }
 
     @Override
