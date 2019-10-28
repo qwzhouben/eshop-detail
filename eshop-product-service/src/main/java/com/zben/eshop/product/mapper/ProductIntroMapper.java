@@ -14,7 +14,7 @@ public interface ProductIntroMapper {
     @Insert("INSERT INTO product_intro(content, product_id) VALUES(#{content}, #{productId})")
     public void add(ProductIntro product);
 
-    @Update("UPDATE product_intro SET name=#{content} WHERE id=#{id}")
+    @Update("UPDATE product_intro SET content=#{content} WHERE id=#{id}")
     public void update(ProductIntro product);
 
     @Delete("DELETE FROM product_intro WHERE id=#{id}")

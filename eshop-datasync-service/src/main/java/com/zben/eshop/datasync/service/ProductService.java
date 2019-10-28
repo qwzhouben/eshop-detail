@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author: zhouben
  * @date: 2019/10/28 0028 10:15
  */
-@FeignClient(name = "eshop-product-service")
+@FeignClient(value = "eshop-product-service")
 public interface ProductService {
 
     @GetMapping("/brand/select/{id}")

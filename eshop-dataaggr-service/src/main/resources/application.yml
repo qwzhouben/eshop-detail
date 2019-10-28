@@ -10,7 +10,7 @@ server:
 
 spring:
   application:
-    name: eshop-datasync-service
+    name: eshop-dataaggr-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     platform: mysql

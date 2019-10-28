@@ -35,13 +35,13 @@ public class DataChangeQueueReceiver {
             processBrandDataChangeMessage(jsonObject);
         } else if("category".equals(dataType)) {
             processCategoryDataChangeMessage(jsonObject);
-        } else if("product_intro".equals(dataType)) {
+        } else if("intro".equals(dataType)) {
             processProductIntroDataChangeMessage(jsonObject);
-        } else if("product_property".equals(dataType)) {
+        } else if("property".equals(dataType)) {
             processProductPropertyDataChangeMessage(jsonObject);
         } else if("product".equals(dataType)) {
             processProductDataChangeMessage(jsonObject);
-        } else if("product_specification".equals(dataType)) {
+        } else if("specification".equals(dataType)) {
             processProductSpecificationDataChangeMessage(jsonObject);
         }
     }

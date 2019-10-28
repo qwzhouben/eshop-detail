@@ -14,7 +14,7 @@ public interface ProductSpecificationMapper {
     @Insert("INSERT INTO product_specification(name, `values`, product_id) VALUES(#{name}, #{values}, #{productId})")
     public void add(ProductSpecification product);
 
-    @Update("UPDATE product_specification SET name=#{name} WHERE id=#{id}")
+    @Update("UPDATE product_specification SET name=#{name}, `values`=#{values} WHERE id=#{id}")
     public void update(ProductSpecification product);
 
     @Delete("DELETE FROM product_specification WHERE id=#{id}")

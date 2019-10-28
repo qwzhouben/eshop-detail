@@ -23,8 +23,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void add(Category category) {
-        categoryMapper.add(category);
-        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"add\", \"data_type\":\"category\", \"id\":"+category.getId()+"}");
+        int id = categoryMapper.add(category);
+        rabbitMQSender.send(RabbitQueue.DATA_CHANGE_QUEUE, "{\"event_type\":\"add\", \"data_type\":\"category\", \"id\":"+id+"}");
     }
 
     @Override

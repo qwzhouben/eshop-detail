@@ -12,7 +12,8 @@ import org.apache.ibatis.annotations.*;
 public interface CategoryMapper {
 
     @Insert("INSERT INTO category(name, description) VALUES(#{name}, #{description})")
-    public void add(Category category);
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    public int add(Category category);
 
     @Update("UPDATE category SET name=#{name}, description=#{description} WHERE id=#{id}")
     public void update(Category category);

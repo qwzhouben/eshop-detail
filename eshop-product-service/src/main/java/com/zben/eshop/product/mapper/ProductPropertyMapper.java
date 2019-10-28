@@ -14,7 +14,7 @@ public interface ProductPropertyMapper {
     @Insert("INSERT INTO product_property(name, `values`, product_id) VALUES(#{name}, #{values}, #{productId})")
     public void add(ProductProperty product);
 
-    @Update("UPDATE product_property SET name=#{name} WHERE id=#{id}")
+    @Update("UPDATE product_property SET name=#{name}, `values`=#{values} WHERE id=#{id}")
     public void update(ProductProperty product);
 
     @Delete("DELETE FROM product_property WHERE id=#{id}")
