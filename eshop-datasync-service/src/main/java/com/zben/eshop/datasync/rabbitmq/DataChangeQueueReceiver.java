@@ -84,7 +84,7 @@ public class DataChangeQueueReceiver {
             jedis.del("product_intro_" + productId);
         }
 
-        rabbitMQSender.send("aggr-data-change-queue", "{\"dim_type\": \"product\", \"id\": " + productId + "}");
+        rabbitMQSender.send("aggr-data-change-queue", "{\"dim_type\": \"product_intro\", \"id\": " + productId + "}");
     }
 
     private void processProductDataChangeMessage(JSONObject messageJSONObject) {
